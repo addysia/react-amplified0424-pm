@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<html lang="eng">
+<head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
@@ -24,20 +23,76 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
-  </head>
-  <body>
+
+  <title>ECS App</title>
+
+  <!-- Mobile Specific Meta-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- bootstrap.min css -->
+  <link rel="stylesheet" href="assets/vendors/bootstrap/bootstrap.css">
+  <!-- Iconfont Css -->
+  <link rel="stylesheet" href="assets/vendors/fontawesome/css/all.css">
+  <link rel="stylesheet" href="assets/vendors/flaticon/flaticon.css">
+  <!-- animate.css -->
+  <link rel="stylesheet" href="assets/vendors/animate-css/animate.css">
+  <link rel="stylesheet" href="assets/vendors/owl/assets/owl.carousel.min.css">
+  <link rel="stylesheet" href="assets/vendors/owl/assets/owl.theme.default.min.css">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+
+
+
+</head>
+
+<body id="top-header">
+
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+
+<!-- 
+Essential Scripts
+=====================================-->
+
+<!-- Main jQuery -->
+<script src="assets/vendors/jquery/jquery.js"></script>
+<!-- Bootstrap 5.1.3 -->
+<script src="assets/vendors/bootstrap/bootstrap.js"></script>
+<!-- Counterup -->
+<script src="assets/vendors/counterup/waypoint.js"></script>
+<script src="assets/vendors/counterup/jquery.counterup.min.js"></script>
+<script src="assets/vendors/jquery.isotope.js"></script>
+<script src="assets/vendors/imagesloaded.js"></script>
+<script src="assets/vendors/owl/owl.carousel.min.js"></script>
+<script src="assets/vendors/google-map/map.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap"></script>    
+<script src="assets/js/script.js"></script>
+
+<script type='text/javascript'>
+  (function(I, L, T, i, c, k, s) {
+    if(I.iticks) return;
+    I.iticks = {host:c, settings:s, clientId:k, cdn:L, queue:[]};
+    var h = T.head || T.documentElement;
+    var e = T.createElement(i);
+    var l = I.location;
+    e.async = true;
+    e.src = (L||c)+'/client/inject-v2.min.js';
+    h.insertBefore(e, h.firstChild);
+    I.iticks.call = function(a, b) {
+      I.iticks.queue.push([a, b]);
+      };
+      })(window, 
+        'https://cdn-v1.intelliticks.com/prod/common', 
+        document, 
+        'script', 
+        'https://app.intelliticks.com', 
+        'ugjovXKJE683vpfBT_c', 
+        {});
+  </script>
+
+
+</body>
 </html>
