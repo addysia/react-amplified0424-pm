@@ -7,6 +7,8 @@ import Contact from "./Components/Contact";
 import Blogs from "./Components/Blog";
 import Courses from "./Components/Courses";
 import TODOS from './Components/TODOS';
+import SignIn from './Components/SignIn';
+import HomeUnsigned from './Components/HomeUnsigned';
 
 export default class Routes extends Component {
   render() {
@@ -23,7 +25,7 @@ export default class Routes extends Component {
             <Todos />
           </Route>
           <Route path="/contact">
-            <TODOS />
+            <Contact />
           </Route>
           <Route path="/blogs">
             <Blogs />
@@ -31,7 +33,9 @@ export default class Routes extends Component {
           <Route path="/courses">
             <Courses />
           </Route>
-          
+          <Route path="/SignIn">
+            <HomeUnsigned />
+          </Route>
         </Switch>
       
       </>

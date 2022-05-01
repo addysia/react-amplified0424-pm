@@ -1,13 +1,15 @@
 import React, { Component, useEffect, useState } from 'react'
-import Amplify, { API, graphqlOperation } from 'aws-amplify'
+import Amplify, { API, graphqlOperation } from 'aws-amplify' // this is for the todo List
 import { createTodo } from '../graphql/mutations'
 import { listTodos } from '../graphql/queries'
 import { Authenticator } from '@aws-amplify/ui-react'
+import { useHistory } from "react-router-dom";
 
 const initialState = { name: '', description: '' }
 
 
 function TODOS () {
+    const history = useHistory();
     const [formState, setFormState] = useState(initialState);
     const [todos, setTodos] = useState([]);
 
