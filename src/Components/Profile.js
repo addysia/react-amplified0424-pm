@@ -1,10 +1,38 @@
 import React from 'react';
 import { API, COGNITO } from '../Common/config';
+import avatar from '../assets/avatar.jpeg';
 
 class UserInfo extends React.Component {
-    constructor() {
+    constructor(props) {
         super();
-        this.content = <div>User Info</div>;
+        this.content = 
+        <>
+        <h4><a href="#">{ props.userdata.username }</a></h4>
+        <ul>
+             <li>
+                <div className="d-flex align-items-center">
+                    <span>Full Name :</span>
+                    <a href="#" className="d-inline-block"></a><a href="#">{ props.userdata.fullName }</a>
+                </div>
+            </li>
+
+            <li>
+                <div className="d-flex align-items-center">
+                    <span>Email :</span>
+                    <a href="#" className="d-inline-block"></a><a href="#">{ props.userdata.email }</a>
+                </div>
+            </li>
+
+            <li>
+                <div className="d-flex align-items-center">
+                    <span>Phone :</span>
+                    <a href="#" className="d-inline-block"></a><a href="#">{ props.userdata.phone }</a>
+                </div>
+            </li>
+
+        </ul>
+        </>
+        ;
     }
 
     render(){
@@ -180,6 +208,7 @@ class Profile extends React.Component {
             (result) => { console.log("API CAll Result"); console.log(result);
               this.setState({
                 isLoaded: true,
+                userData : result.data.user,
                 educationList: result.data.user.eduProfileList,
                 careerList: result.data.user.careerProfileList,
                 personalityList: result.data.user.personalityProfileList
@@ -198,7 +227,7 @@ class Profile extends React.Component {
       }
 
     render(){
-        const { error, isLoaded, educationList, careerList, personalityList } = this.state;
+        const { error, isLoaded, userData, educationList, careerList, personalityList } = this.state;
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
@@ -215,14 +244,14 @@ class Profile extends React.Component {
                                                 <div className="row align-items-center">
                                                     <div className="col-lg-4 col-md-4">
                                                         <div className="instructor-image">
-                                                            <img src="../../assets/img_avatar.png" alt="" className="img-fluid" />
+                                                            <img src={ avatar } alt="" className="img-fluid" />
                                                         </div>
                                                         <br />
                                                     </div>
                         
                                                     <div className="col-lg-8 col-md-8">
                                                         <div id="userInfoContainer" className="instructor-content">
-                                                            <UserInfo />
+                                                            <UserInfo userdata ={ userData } />
                                                         </div>
                                                     </div>
                                                 </div>
