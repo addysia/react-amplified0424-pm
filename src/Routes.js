@@ -7,6 +7,7 @@ import Contact from "./Components/Contact";
 import Blogs from "./Components/Blog";
 import Courses from "./Components/Courses";
 import TODOS from './Components/TODOS';
+import Profile from './Components/Profile';
 
 export default class Routes extends Component {
   render() {
@@ -30,6 +31,9 @@ export default class Routes extends Component {
           </Route>
           <Route path="/courses">
             <Courses />
+          </Route>
+          <Route path="/profile">
+             <Profile />
           </Route>
           
         </Switch>
