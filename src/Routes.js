@@ -8,6 +8,8 @@ import Blogs from "./Components/Blog";
 import Courses from "./Components/Courses";
 import TODOS from './Components/TODOS';
 import Profile from './Components/Profile';
+import SignIn from './Components/SignIn';
+import HomeUnsigned from './Components/HomeUnsigned';
 
 export default class Routes extends Component {
   render() {
@@ -24,7 +26,7 @@ export default class Routes extends Component {
             <Todos />
           </Route>
           <Route path="/contact">
-            <TODOS />
+            <Contact />
           </Route>
           <Route path="/blogs">
             <Blogs />
@@ -34,8 +36,10 @@ export default class Routes extends Component {
           </Route>
           <Route path="/profile">
              <Profile />
+          </Route>         
+          <Route path="/SignIn">
+            <HomeUnsigned />
           </Route>
-          
         </Switch>
       
       </>

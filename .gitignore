@@ -23,6 +23,8 @@ yarn-debug.log*
 yarn-error.log*
 
 #amplify-do-not-edit-begin
+amplify/team-provider-info.json
+amplify/backend/hosting/amplifyhosting/amplifyhosting-template.json
 amplify/\#current-cloud-backend
 amplify/.config/local-*
 amplify/logs

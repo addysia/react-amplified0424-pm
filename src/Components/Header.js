@@ -2,9 +2,38 @@ import React, { Component } from 'react'
 // import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import { BrowserRouter as Router, Link } from 'react-router-dom'
 import Routes from '../Routes';
+import { Authenticator } from '@aws-amplify/ui-react'
+import { Auth } from 'aws-amplify';
+// import { Amplify } from 'aws-amplify';
 
-export default class Header extends Component {
-  render() {
+// import { withAuthenticator } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
+
+// import awsExports from '../aws-exports';
+// Amplify.configure(awsExports);
+
+
+
+const Header = () => {
+
+    async function signOut() {
+        try {
+            await Auth.signOut();
+        } catch (error) {
+            console.log('error signing out: ', error);
+        }
+    }
+    
+    // async function signIn() {
+    //     // const username = 'admtest';
+    //     // const password = '@@@###Abc123';
+    //     try {
+    //         const user = await Auth.signIn(username, password);
+    //     } catch (error) {
+    //         console.log('error signing in', error);
+    //     }
+    // }
+
     return (
         <Router>
       <div>
@@ -20,8 +49,11 @@ export default class Header extends Component {
                     <div className="col-lg-6 col-md-6">
                     <div className="header-right float-lg-end">
                         <a>
-                        <Link to="/todo">Membership Login</Link>
+                        <Link to="/SignIn">Membership Login</Link>
+                        {/* <button onClick={signIn}>Members Sign In</button> */}
                         </a>
+                        {/* <a onClick={signOut}> Sign out </a> */}
+                        <button style={styles.button} onClick={signOut}>Sign out</button>
                     </div>
                     </div>
                 </div>
@@ -43,26 +75,6 @@ export default class Header extends Component {
                     {/* Collapse */}
                     <div className="collapse navbar-collapse" id="navbarMenu">
                     <ul className="navbar-nav mx-auto">
-                        {/* <li className="nav-item dropdown">
-                        <a className="nav-link dropdown-toggle" href="#" id="navbar3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i className="fa fa-angle-down" />
-                            <Link to="/">Home</Link>
-                        </a>
-                        <div className="dropdown-menu" aria-labelledby="navbar3">
-                            <a className="dropdown-item ">
-                            <Link to="/">Home</Link>
-                            </a>
-                            <a className="dropdown-item ">
-                            <Link to="/">Home 2</Link>
-                            </a> 
-                            <a className="dropdown-item ">
-                            <Link to="/">Home 3</Link>
-                            </a> 
-                            <a className="dropdown-item ">
-                            <Link to="/">Home 4</Link>
-                            </a> 
-                        </div>
-                        </li> */}
                         <li className="nav-item ">
                             <a className="nav-link js-scroll-trigger">
                                 <Link to="/">Home</Link>
@@ -73,72 +85,12 @@ export default class Header extends Component {
                             <Link to="/about">About us</Link>
                         </a>
                         </li>
-                        {/* <li className="nav-item dropdown">
-                        <a className="nav-link dropdown-toggle" href="#" id="navbar3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Courses<i className="fa fa-angle-down" />
-                        </a>
-                        <div className="dropdown-menu" aria-labelledby="navbar3">
-                            <a className="dropdown-item " href="course-grid.html">
-                            Course Style 1
-                            </a>
-                            <a className="dropdown-item " href="course-grid-2.html">
-                            Course Style 2
-                            </a> 
-                            <a className="dropdown-item " href="course-grid-3.html">
-                            Course Style 3
-                            </a> 
-                            <a className="dropdown-item " href="course-grid-4.html">
-                            Course Style 4
-                            </a> 
-                            <a className="dropdown-item " href="course-single.html">
-                            Course Details Style 1
-                            </a> 
-                            <a className="dropdown-item " href="course-single2.html">
-                            Course Details Style 2
-                            </a> 
-                        </div>
-                        </li> */}
                         <li className="nav-item ">
                             <a className="nav-link">
                                 <Link to="/courses">Courses</Link>
                             </a>
                         </li>
-                        {/* <li className="nav-item dropdown">
-                        <a className="nav-link dropdown-toggle" href="#" id="navbar3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Pages<i className="fa fa-angle-down" />
-                        </a>
-                        <div className="dropdown-menu" aria-labelledby="navbar3">
-                            <a className="dropdown-item " href="login.html">
-                            Login
-                            </a>
-                            <a className="dropdown-item " href="register.html">
-                            Register
-                            </a> 
-                            <a className="dropdown-item " href="cart.html">
-                            cart
-                            </a> 
-                            <a className="dropdown-item " href="checkout.html">
-                            checkout
-                            </a> 
-                            <a className="dropdown-item " href="error.html">
-                            404
-                            </a> 
-                        </div>
-                        </li> */}
-                        {/* <li className="nav-item dropdown">
-                        <a className="nav-link dropdown-toggle" id="navbar3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Blog
-                            <i className="fa fa-angle-down" />
-                        </a>
-                        <div className="dropdown-menu" aria-labelledby="navbar3">
-                            <a className="dropdown-item " >
-                            <Link to="/blogs">Blog</Link>
-                            </a>
-                            <a className="dropdown-item ">
-                            <Link to="/blogs">Single Blog</Link>
-                            </a> 
-                        </div>
-                        </li> */}
+                      
                         <li className="nav-item ">
                         <a className="nav-link">
                         <Link to="/blogs">Blog</Link>
@@ -175,18 +127,6 @@ export default class Header extends Component {
             </div>
             </header>
 
-      
-        {/* <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route> 
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/todo">
-            <Todos />
-          </Route>
-        </Switch> */}
         <Routes />
 
       
@@ -194,4 +134,15 @@ export default class Header extends Component {
       </Router>
     )
   }
-}
+
+const styles = {
+    container: { width: 400, margin: '0 auto', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: 20 },
+    todo: {  marginBottom: 15 },
+    input: { border: 'none', backgroundColor: '#ddd', marginBottom: 10, padding: 8, fontSize: 18 },
+    todoName: { fontSize: 20, fontWeight: 'bold' },
+    todoDescription: { marginBottom: 0 },
+    button: {  color: 'white', outline: 'none', fontSize: 14, backgroundColor: 'transparent' }
+  }
+
+
+export default Header;
