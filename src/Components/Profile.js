@@ -1,6 +1,8 @@
 import React from 'react';
-import { API, COGNITO } from '../Common/config';
+import { API } from '../Common/config';
 import avatar from '../assets/avatar.jpeg';
+import { getUser } from '../Common/common.js'
+import { BrowserRouter } from 'react-router-dom'
 
 class UserInfo extends React.Component {
     constructor(props) {
@@ -141,7 +143,7 @@ class EducationInfo extends React.Component {
 
 class PersonalityInfo extends React.Component {
     constructor(props) {
-        super();
+        super();      
         this.content = 
     <div style={{paddingBottom:"0px", marginBottom:"10px"}} className="course-widget course-details-info">
         <ul style={{paddingBottom:"0px"}}>
@@ -187,22 +189,107 @@ class PersonalityInfo extends React.Component {
     }
 }
 
+class RecommendedCourse extends React.Component {
+    constructor(props) {
+        super(props);  
+        let recommendedCourse = props.recommendedcourse;  
+        this.content = 
+        <ul class="recent-posts course-popular">
+            <li>
+                <div class="widget-post-thumb">
+                    <a href="#"><img src="assets/images/course/course-sm1.jpg" alt="" class="img-fluid" /></a>
+                </div>
+                <div class="widget-post-body">
+                    <h5> { recommendedCourse.career } </h5>
+                    <h6> <a href="#"> { recommendedCourse.courses_to_take } </a></h6>
+                </div>
+            </li>
+        </ul>
+    }
+
+    render(){
+        return this.content;
+    }
+}
+
+class RecommendedCourses extends React.Component {
+
+    constructor(props) {
+        super(props);  
+        this.state = {
+            isLoaded: false,
+            recommendedCourses : []
+        };    
+        this.content = ""
+    }
+
+    componentDidMount() { 
+        fetch(API.ENDPOINT.SEARCHSERVICE.GET_COURSE_RECOMMENDATION_BY_CURRENT_CAREER + this.props.currentcareer.position)
+          .then(res => res.json())
+          .then(
+            (result) => { console.log("Get Course Recommendation By Career"); console.log(result);
+               this.setState({
+                  isLoaded: true,
+                  recommendedCourses : result.data
+               })              
+            },
+
+            (error) => {
+              this.setState({
+                isLoaded: true,
+                error
+              });
+            }
+          )
+    }
+
+    render(){
+        const { error, isLoaded, recommendedCourses} = this.state;
+        console.log("This State .. Recommended Coruses"); console.log(this.state);
+        if (error) {
+            return <div>Error: {error.message}</div>;
+        } else if (!isLoaded) {
+            return <div>Loading...</div>;
+        } else {
+            return (
+                <ul class="recent-posts course-popular">
+                    {
+                        recommendedCourses.map(courseData => (
+                         <RecommendedCourse recommendedcourse={ courseData } />
+                        ))
+                    }
+                </ul>
+            )
+        }
+        
+    }
+}
 
 class Profile extends React.Component {
     constructor() {
         super();
+
+        if( !getUser() ){
+            window.location.replace("/todo");
+        }
+
         this.state = {
             error: null,
             isLoaded: false,
             educationList: [],
             careerList: [],
-            personalityList: []
+            personalityList: [],
+            recommendedCourses: [],
+            currentCareer : ""
           };
         
       }
 
       componentDidMount() {
-        fetch(API.ENDPOINT.GET_USER_TEST)
+        if(!getUser()){
+            return;
+        }
+        fetch(API.ENDPOINT.GET_USER_BY_USERNAME + getUser())
           .then(res => res.json())
           .then(
             (result) => { console.log("API CAll Result"); console.log(result);
@@ -211,8 +298,10 @@ class Profile extends React.Component {
                 userData : result.data.user,
                 educationList: result.data.user.eduProfileList,
                 careerList: result.data.user.careerProfileList,
-                personalityList: result.data.user.personalityProfileList
+                personalityList: result.data.user.personalityProfileList,
+                currentCareer: result.data.user.careerProfileList[result.data.user.careerProfileList.length - 1]
               });
+              console.log("Current State ---> "); console.log(this.state);
             },
             // Note: it's important to handle errors here
             // instead of a catch() block so that we don't swallow
@@ -227,7 +316,7 @@ class Profile extends React.Component {
       }
 
     render(){
-        const { error, isLoaded, userData, educationList, careerList, personalityList } = this.state;
+        const { error, isLoaded, userData, educationList, careerList, personalityList, currentCareer } = this.state;
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
@@ -320,9 +409,18 @@ class Profile extends React.Component {
 
                                         
                                     </div>
+                                    <div class="col-lg-4">
+                            <div class="course-sidebar course-sidebar-2">
+                                <div class="course-latest">
+                                    <h4>Recommend Courses</h4>
+                                         <RecommendedCourses currentcareer = { currentCareer } /> 
                                 </div>
                             </div>
-                        </section>
+                        </div>
+                                </div>
+                        </div>                      
+                    </section>
+                    
                     </>
                     
                 );
