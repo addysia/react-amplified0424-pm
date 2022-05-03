@@ -7,7 +7,6 @@ const initialState = { name: '', description: '' }
 
 
 function TODOS () {
-    const history = useHistory();
     const [formState, setFormState] = useState(initialState);
     const [todos, setTodos] = useState([]);
     const styles = {
