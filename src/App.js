@@ -9,6 +9,7 @@ import '@aws-amplify/ui-react/styles.css';
 import awsExports from "./aws-exports";
 import TODOS from "./Components/TODOS";
 import Header from "./Components/Header";
+import "./App.css";
 
 Amplify.configure(awsExports);
 

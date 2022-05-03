@@ -5,8 +5,8 @@ export default class Contact extends Component {
   render() {
     return (
 
-               <Authenticator>
-      {({ signOut, user }) => (
+      //          <Authenticator>
+      // {({ signOut, user }) => (
         <>
             <section className="page-header">
               <div className="container">
@@ -105,8 +105,8 @@ export default class Contact extends Component {
               </div>
             </section>
             </>
-      )}
-      </Authenticator>
+      // )}
+      // </Authenticator>
 
     )
   }

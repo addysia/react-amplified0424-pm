@@ -9,6 +9,7 @@ import Courses from "./Components/Courses";
 import TODOS from './Components/TODOS';
 import SignIn from './Components/SignIn';
 import HomeUnsigned from './Components/HomeUnsigned';
+import CoursesOld from './Components/CoursesOld';
 
 export default class Routes extends Component {
   render() {
@@ -32,6 +33,9 @@ export default class Routes extends Component {
           </Route>
           <Route path="/courses">
             <Courses />
+          </Route>
+          <Route path="/coursesold">
+            <CoursesOld />
           </Route>
           <Route path="/SignIn">
             <HomeUnsigned />
