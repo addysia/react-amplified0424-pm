@@ -100,6 +100,13 @@ const Header = () => {
                         <Link to="/contact">Contact</Link>
                         </a>
                         </li>
+
+                        <li className="nav-item ">
+                        <a className="nav-link">
+                        <Link to="/profile">Profile</Link>
+                        </a>
+                        </li>
+
                     </ul>
                     <div className="d-flex align-items-center">
                         <div className="header-socials social-links d-none d-lg-none d-xl-block">

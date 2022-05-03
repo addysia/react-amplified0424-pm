@@ -3,6 +3,7 @@ import Amplify, { API, graphqlOperation } from 'aws-amplify' // this is for the 
 import { createTodo } from '../graphql/mutations'
 import { listTodos } from '../graphql/queries'
 import { Authenticator } from '@aws-amplify/ui-react'
+import setUserSession from '../Common/common.js'
 import { useHistory } from "react-router-dom";
 
 const initialState = { name: '', description: '' }

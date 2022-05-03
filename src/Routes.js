@@ -7,6 +7,7 @@ import Contact from "./Components/Contact";
 import Blogs from "./Components/Blog";
 import Courses from "./Components/Courses";
 import TODOS from './Components/TODOS';
+import Profile from './Components/Profile';
 import SignIn from './Components/SignIn';
 import HomeUnsigned from './Components/HomeUnsigned';
 import CoursesOld from './Components/CoursesOld';
@@ -37,6 +38,9 @@ export default class Routes extends Component {
           <Route path="/coursesold">
             <CoursesOld />
           </Route>
+          <Route path="/profile">
+             <Profile />
+          </Route>         
           <Route path="/SignIn">
             <HomeUnsigned />
           </Route>
