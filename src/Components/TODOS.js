@@ -32,6 +32,7 @@ function TODOS () {
           case 'signOut':
               console.log('user signed out');
               removeUserSession();
+              window.location.replace("/");
               break;
           case 'signIn_failure':
               console.log('user sign in failed');

@@ -287,6 +287,7 @@ class Profile extends React.Component {
 
       componentDidMount() {
         if(!getUser()){
+            window.location.href("/");
             return;
         }
         fetch(API.ENDPOINT.GET_USER_BY_USERNAME + getUser())
