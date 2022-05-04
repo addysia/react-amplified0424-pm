@@ -8,13 +8,14 @@ API.HTTP_VERB.ADD = "POST";
 API.HTTP_VERB.UPDATE = "PATCH";
 API.HTTP_VERB.DELETE = "DELETE";
 
-API.ENDPOINT.PROTOCOL = "http";
+API.ENDPOINT.PROTOCOL = "https";
 // LOCALHOST Config
 //API.ENDPOINT.HOST = API.ENDPOINT.PROTOCOL + "://" + "localhost";
 //API.ENDPOINT.PORT = ":8080";
 
-// AWS ENPOINT
-API.ENDPOINT.HOST = API.ENDPOINT.PROTOCOL + "://" + "ecsconsumerservice-env.eba-thmnbnif.ap-southeast-1.elasticbeanstalk.com";
+// AWS ENPOINT  
+// API.ENDPOINT.HOST = API.ENDPOINT.PROTOCOL + "://" + "ecsconsumerservice-env.eba-thmnbnif.ap-southeast-1.elasticbeanstalk.com";
+API.ENDPOINT.HOST = API.ENDPOINT.PROTOCOL + "://" + "v6wfq0kmo1.execute-api.us-east-1.amazonaws.com";
 API.ENDPOINT.PORT = "";
 API.ENDPOINT.VERSION = "v1";
 API.ENDPOINT.BASE_URL = API.ENDPOINT.HOST + API.ENDPOINT.PORT + "/api/" + API.ENDPOINT.VERSION;

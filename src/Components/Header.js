@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Link } from 'react-router-dom'
 import Routes from '../Routes';
 import { Authenticator } from '@aws-amplify/ui-react'
 import { Auth } from 'aws-amplify';
+import { setUserSession, removeUserSession } from '../Common/common.js'
 // import { Amplify } from 'aws-amplify';
 
 // import { withAuthenticator } from '@aws-amplify/ui-react';
@@ -19,6 +20,8 @@ const Header = () => {
     async function signOut() {
         try {
             await Auth.signOut();
+            removeUserSession();
+            window.location.replace("/");
         } catch (error) {
             console.log('error signing out: ', error);
         }
