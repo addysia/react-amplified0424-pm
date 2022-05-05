@@ -20,8 +20,8 @@ function TODOS () {
 
     const listener = (data) => {
       switch (data.payload.event) {
-          case 'signIn':
-              console.log('user signed in');
+          case 'signIn': 
+              console.log('user signed in'); alert("Listen signin");
               let username = data.payload.data.username;
               setUserSession(username);
               window.location.replace("/profile");

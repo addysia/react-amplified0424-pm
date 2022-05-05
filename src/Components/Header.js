@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Link } from 'react-router-dom'
 import Routes from '../Routes';
 import { Authenticator } from '@aws-amplify/ui-react'
-import { Auth } from 'aws-amplify';
+import { Auth, Hub } from 'aws-amplify';
 import { setUserSession, removeUserSession } from '../Common/common.js'
 // import { Amplify } from 'aws-amplify';
 
@@ -16,6 +16,38 @@ import '@aws-amplify/ui-react/styles.css';
 
 
 const Header = () => {
+
+    const listener = (data) => {
+        switch (data.payload.event) {
+            case 'signIn': 
+                console.log('user signed in');
+                let username = data.payload.data.username;
+                setUserSession(username);
+                window.location.replace("/profile");
+                break;
+            case 'signUp':
+                console.log('user signed up');
+                break;
+            case 'signOut':
+                console.log('user signed out');
+                removeUserSession();
+                window.location.replace("/");
+                break;
+            case 'signIn_failure':
+                console.log('user sign in failed');
+                break;
+            case 'tokenRefresh':
+                console.log('token refresh succeeded');
+                break;
+            case 'tokenRefresh_failure':
+                console.log('token refresh failed');
+                break;
+            case 'configured':
+                console.log('the Auth module is configured');
+        }
+    }
+    
+    Hub.listen('auth', listener);
 
     async function signOut() {
         try {
