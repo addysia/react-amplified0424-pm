@@ -291,7 +291,7 @@ class Profile extends React.Component {
             window.location.href("/");
             return;
         }
-        fetch(API.ENDPOINT.SEARCHSERVICE.GET_USER_BY_USERNAME + getUser())
+        fetch(API.ENDPOINT.GET_USER_BY_USERNAME + getUser())
           .then(res => res.json())
           .then(
             (result) => { console.log("API CAll Result"); console.log(result);
