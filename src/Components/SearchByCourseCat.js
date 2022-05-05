@@ -15,7 +15,7 @@ const SearchByCourseCat =() => {
         //console.log(event.target.value)
         // console.log(value);
         if (event.target.value){
-        fetch("https://mtyl3wmuu9.execute-api.us-east-1.amazonaws.com/v1/courses/"+event.target.value)
+        fetch("https://mtyl3wmuu9.execute-api.us-east-1.amazonaws.com/v1/courses1/"+event.target.value)
             .then(res => res.json())
             .then(
                 (courses) => {
