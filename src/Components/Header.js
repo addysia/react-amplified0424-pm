@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 // import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
-import { BrowserRouter as Router, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Link, useHistory } from 'react-router-dom'
 import Routes from '../Routes';
 import { Authenticator } from '@aws-amplify/ui-react'
 import { Auth, Hub } from 'aws-amplify';
@@ -16,14 +16,16 @@ import '@aws-amplify/ui-react/styles.css';
 
 
 const Header = () => {
-
+    const history = useHistory();
     const listener = (data) => {
         switch (data.payload.event) {
             case 'signIn': 
                 console.log('user signed in');
                 let username = data.payload.data.username;
                 setUserSession(username);
-                window.location.replace("/profile");
+                //window.location.replace("/profile");
+                //history.push("/profile");
+                document.querySelector("a[href='/profile'").click();
                 break;
             case 'signUp':
                 console.log('user signed up');
@@ -31,7 +33,8 @@ const Header = () => {
             case 'signOut':
                 console.log('user signed out');
                 removeUserSession();
-                window.location.replace("/");
+                //window.location.replace("/");
+                document.querySelector("a[href='/'").click();
                 break;
             case 'signIn_failure':
                 console.log('user sign in failed');
